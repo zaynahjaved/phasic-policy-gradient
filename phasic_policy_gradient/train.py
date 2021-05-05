@@ -6,8 +6,8 @@ from .impala_cnn import ImpalaEncoder
 from . import logger
 from .envs import get_venv
 
-def train_fn(env_name="coinrun",
-    distribution_mode="hard",
+def train_fn(env_name="fruitbot",
+    distribution_mode="easy",
     arch="dual",  # 'shared', 'detach', or 'dual'
     # 'shared' = shared policy and value networks
     # 'dual' = separate policy and value networks
@@ -78,7 +78,7 @@ def train_fn(env_name="coinrun",
 
 def main():
     parser = argparse.ArgumentParser(description='Process PPG training arguments.')
-    parser.add_argument('--env_name', type=str, default='coinrun')
+    parser.add_argument('--env_name', type=str, default='fruitbot')
     parser.add_argument('--num_envs', type=int, default=64)
     parser.add_argument('--n_epoch_pi', type=int, default=1)
     parser.add_argument('--n_epoch_vf', type=int, default=1)
