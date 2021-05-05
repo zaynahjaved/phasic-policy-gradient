@@ -6,7 +6,7 @@ def get_procgen_venv(*, env_id, num_envs, rendering=False, **env_kwargs):
     if rendering:
         env_kwargs["render_human"] = True
 
-    env = ProcgenGym3Env(num=num_envs, env_name=env_id, **env_kwargs)
+    env = ProcgenGym3Env(num=num_envs, env_name=env_id, start_level=0, num_levels=500, **env_kwargs)
 
     env = gym3.ExtractDictObWrapper(env, "rgb")
 
