@@ -37,6 +37,7 @@ To test the model on more difficult levels:
 ```
 python -m phasic_policy_gradient.test --model_path path/to/model.jd
 ```
+For either testing or training, to modify the levels you run on, change start_level and num_levels in line 9 of envs.py
 
 ## Reproduce and Visualize Results
 
