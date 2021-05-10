@@ -1,4 +1,5 @@
 from mpi4py import MPI
+import argparse
 from . import torch_util as tu
 import torch as th
 from . import logger
@@ -8,8 +9,9 @@ from .roller import Roller
 
 def test_fn(env_name="fruitbot",
     distribution_mode="easy",
-    interacts_total=100_000_000,
+    interacts_total=1000000,
     num_envs=64,
+    model_path='',
     log_dir='/tmp/test'
     ):
 
@@ -22,8 +24,7 @@ def test_fn(env_name="fruitbot",
 
     venv = get_venv(num_envs=num_envs, env_name=env_name, distribution_mode=distribution_mode)
 
-    """ REPLACE MODEL FILE HERE"""
-    model = th.load('phasic_policy_gradient/model_test.jd', map_location=th.device('cpu'))
+    model = th.load(model_path, map_location=th.device('cpu'))
 
     model.to(tu.dev())
     logger.log(tu.format_model(model))
@@ -70,4 +71,7 @@ def test_fn(env_name="fruitbot",
             break
 
 if __name__ == '__main__':
-    test_fn(env_name='fruitbot')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model_path', type=str)
+    args=parser.parse_args()
+    test_fn(env_name='fruitbot',model_path=args.model_path)
