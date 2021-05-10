@@ -226,6 +226,7 @@ def learn(
     kl_ewma_decay=None,
     interacts_total=float("inf"),
     name2coef=None,
+    rnorm=True,
     comm=None,
 ):
     """
@@ -252,6 +253,7 @@ def learn(
             ],
             interacts_total=interacts_total,
             store_segs=store_segs,
+            rnorm=True,
             comm=comm,
             **ppo_hps,
         )

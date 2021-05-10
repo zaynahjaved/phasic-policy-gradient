@@ -28,6 +28,7 @@ def train_fn(env_name="fruitbot",
     beta_clone=1.0,
     vf_true_weight=1.0,
     log_dir='/tmp/ppg',
+    rnorm=False,
     comm=None):
     if comm is None:
         comm = MPI.COMM_WORLD
@@ -73,6 +74,7 @@ def train_fn(env_name="fruitbot",
         n_aux_epochs=n_aux_epochs,
         n_pi=n_pi,
         name2coef=name2coef,
+        rnorm=rnorm,
         comm=comm,
     )
 
@@ -87,7 +89,7 @@ def main():
     parser.add_argument('--clip_param', type=float, default=0.2)
     parser.add_argument('--kl_penalty', type=float, default=0.0)
     parser.add_argument('--arch', type=str, default='dual') # 'shared', 'detach', or 'dual'
-
+    parser.add_argument('--rnorm', type=bool, default='True')
     args = parser.parse_args()
 
     comm = MPI.COMM_WORLD
@@ -100,6 +102,7 @@ def main():
         n_aux_epochs=args.n_aux_epochs,
         n_pi=args.n_pi,
         arch=args.arch,
+        rnorm = args.rnorm,
         comm=comm)
 
 if __name__ == '__main__':
