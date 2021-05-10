@@ -33,9 +33,9 @@ To train the environment using Fruitbot, use the following command.
 python -m phasic_policy_gradient.train --rnorm [False, True] --acpenalization [False, True]
 ```
 
-To test the model on more difficult levels, modify the phasic_policy_gradient/test.py file. Replace your model file and directory on line 26 and run:
+To test the model on more difficult levels:
 ```
-python -m phasic_policy_gradient.test
+python -m phasic_policy_gradient.test --model_path path/to/model.jd
 ```
 
 ## Reproduce and Visualize Results
