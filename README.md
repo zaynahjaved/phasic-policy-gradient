@@ -28,9 +28,9 @@ pip install -e phasic-policy-gradient
 
 ## Training and Testing
 
-To train the environment using Fruitbot, use the following command. To use reward normalization, change line 134 in ppo.py to True. To use action penalization, change _______________:
+To train the environment using Fruitbot, use the following command.
 ```
-python -m phasic_policy_gradient.train
+python -m phasic_policy_gradient.train --rnorm [False, True] --acpenalization [False, True]
 ```
 
 To test the model on more difficult levels, modify the phasic_policy_gradient/test.py file. Replace your model file and directory on line 26 and run:
