@@ -4,7 +4,7 @@
 
 #### [[Paper]](https://arxiv.org/abs/2009.04416)
 
-This is code for training agents using [Phasic Policy Gradient](https://arxiv.org/abs/2009.04416) [(citation)](#citation).
+Our approach to the ProcGen FruitBot Final Project uses Phasic Policy Gradient with additions of reward normalization and action penalization. The explanation for PPG can be found at (https://arxiv.org/abs/2009.04416).
 
 Supported platforms:
 
@@ -24,6 +24,18 @@ git clone https://github.com/openai/phasic-policy-gradient.git
 conda env update --name phasic-policy-gradient --file phasic-policy-gradient/environment.yml
 conda activate phasic-policy-gradient
 pip install -e phasic-policy-gradient
+```
+
+## Training and Testing
+
+To train the environment using Fruitbot, use the following command. To use reward normalization, change line 134 in ppo.py to True. To use action penalization, change _______________:
+```
+python -m phasic_policy_gradient.train
+```
+
+To test the model on more difficult levels, modify the phasic_policy_gradient/test.py file. Replace your model file and directory on line 26 and run:
+```
+python -m phasic_policy_gradient.test
 ```
 
 ## Reproduce and Visualize Results
@@ -78,16 +90,3 @@ python -m phasic_policy_gradient.graph --experiment_name ppg_single_network
 ```
 
 Pass `--normalize_and_reduce` to compute and visualize the mean normalized return with `phasic_policy_gradient.graph`.
-
-# Citation
-
-Please cite using the following bibtex entry:
-
-```
-@article{cobbe2020ppg,
-  title={Phasic Policy Gradient},
-  author={Cobbe, Karl and Hilton, Jacob and Klimov, Oleg and Schulman, John},
-  journal={arXiv preprint arXiv:2009.04416},
-  year={2020}
-}
-```
