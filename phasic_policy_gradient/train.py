@@ -28,7 +28,7 @@ def train_fn(env_name="fruitbot",
     beta_clone=1.0,
     vf_true_weight=1.0,
     log_dir='/tmp/ppg',
-    rnorm=False,
+    rnorm=True,
     comm=None):
     if comm is None:
         comm = MPI.COMM_WORLD
