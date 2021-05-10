@@ -18,6 +18,7 @@ class Roller:
         keep_sep_eps: "keep buffer of per-env episodes in VecMonitor2" = False,
         keep_non_rolling: "also keep a non-rolling buffer of episode stats" = False,
         keep_cost: "keep per step costs and add to segment" = False,
+        acpenalization=False
     ):
         """
             All outputs from public methods are torch arrays on default device
@@ -35,6 +36,7 @@ class Roller:
         self._state = initial_state
         self._infos = None
         self._keep_cost = keep_cost
+        self._acpenalization = acpenalization
         self.has_non_rolling_eps = keep_non_rolling
 
     @property
@@ -167,6 +169,9 @@ class Roller:
         ac, newstate, other_outs = self._act_fn(
             ob=ob, first=first, state_in=self._state, **act_kwargs
         )
+        if self._acpenalization:
+            if self._state == newstate:
+                lastrew = lastrew-1
         self._state = newstate
         out.update(lastrew=lastrew, ob=ob, first=first, ac=ac)
         self._venv.act(tree_map(tu.th2np, ac))

@@ -227,6 +227,7 @@ def learn(
     interacts_total=float("inf"),
     name2coef=None,
     rnorm=True,
+    acpenalization=False,
     comm=None,
 ):
     """
@@ -253,7 +254,8 @@ def learn(
             ],
             interacts_total=interacts_total,
             store_segs=store_segs,
-            rnorm=True,
+            rnorm=rnorm,
+            acpenalization=acpenalization,
             comm=comm,
             **ppo_hps,
         )

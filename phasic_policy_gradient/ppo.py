@@ -135,6 +135,7 @@ def learn(
     kl_penalty: "(int) weight of the KL penalty, which can be used in place of clipping" = 0,
     grad_weight: "(float) relative weight of this worker's gradients" = 1,
     comm: "(MPI.Comm) MPI communicator" = None,
+    acpenalization=False,
     callbacks: "(seq of function(dict)->bool) to run each update" = (),
     learn_state: "dict with optional keys {'opts', 'roller', 'lsh', 'reward_normalizer', 'curr_interact_count', 'seg_buf'}" = None,
 ):
@@ -196,6 +197,7 @@ def learn(
         venv=venv,
         initial_state=model.initial_state(venv.num),
         keep_buf=100,
+        acpenalization=acpenalization,
         keep_non_rolling=log_save_opts.get("log_new_eps", False),
     )
 

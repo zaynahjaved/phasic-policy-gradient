@@ -29,6 +29,7 @@ def train_fn(env_name="fruitbot",
     vf_true_weight=1.0,
     log_dir='/tmp/ppg',
     rnorm=True,
+    acpenalization=False,
     comm=None):
     if comm is None:
         comm = MPI.COMM_WORLD
@@ -75,6 +76,7 @@ def train_fn(env_name="fruitbot",
         n_pi=n_pi,
         name2coef=name2coef,
         rnorm=rnorm,
+        acpenalization=acpenalization,
         comm=comm,
     )
 
@@ -90,6 +92,7 @@ def main():
     parser.add_argument('--kl_penalty', type=float, default=0.0)
     parser.add_argument('--arch', type=str, default='dual') # 'shared', 'detach', or 'dual'
     parser.add_argument('--rnorm', type=bool, default='True')
+    parser.add_argument('--acpenalization', type=bool, default='False')
     args = parser.parse_args()
 
     comm = MPI.COMM_WORLD
@@ -103,6 +106,7 @@ def main():
         n_pi=args.n_pi,
         arch=args.arch,
         rnorm = args.rnorm,
+        acpenalization=args.acpenalization,
         comm=comm)
 
 if __name__ == '__main__':
